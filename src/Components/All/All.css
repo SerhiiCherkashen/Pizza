@@ -1,0 +1,47 @@
+.hyi {
+  /* background-color: burlywood; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.bnt-wrapper {
+  background-color: rgb(244, 252, 249);
+}
+.bnt-wrapper button {
+  border: none;
+  margin: 1px;
+  font-weight: 700;
+}
+.bnt-wrapper button :hover {
+  background-color: red;
+}
+.btn-top {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.btn-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.price {
+  display: flex;
+  align-items: end;
+}
+.price-wrapper {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  /* white-space: nowrap; */
+}
+.price-div-wr {
+  display: flex;
+}
+.price-old {
+  font-size: 20px;
+  text-decoration: line-through;
+  color: #888;
+}
+.price-new {
+  margin-left: 5px;
+  color: red;
+  font-size: 30px;
+  font-weight: 500;
+}

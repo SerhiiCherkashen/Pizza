@@ -1,0 +1,37 @@
+.link-route {
+  text-decoration: none;
+  margin-left: 20px;
+  color: black;
+  font-weight: 500;
+  background-color: rgb(240, 240, 240);
+
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* transform: all 0.3s; */
+  cursor: pointer;
+}
+.logo-route :hover {
+  background-color: black;
+}
+.asd {
+  background-color: red;
+}
+.logo-pizza {
+  width: 50px;
+  /* margin-left: 30px; */
+}
+.header-logo {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.headerBtn {
+  border-radius: 20px;
+  background-color: rgb(236, 116, 3);
+  border: none;
+}
+.headerBtn :hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
