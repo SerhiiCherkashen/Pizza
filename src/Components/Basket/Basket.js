@@ -1,17 +1,32 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Basket.css";
-import basketLogo from "../Pizza/basketW.png";
-import { delPizza, minusQuantity, plusQuantity } from "../Store/PizzaSlice";
+import basketLogo from "./basketLogoBlack.webp";
+import {
+  compositionOfProducts,
+  delPizza,
+  minusQuantity,
+  plusQuantity,
+} from "../Store/PizzaSlice";
+import { Link } from "react-router-dom";
 
 const Basket = () => {
   const dispatch = useDispatch();
   const stateBasket = useSelector((state) => state.pizzaReducer.stateBasket);
   const stateAll = useSelector((state) => state.pizzaReducer.stateAll);
+  let quantity = 0;
+  let summa = 0;
+  stateBasket.forEach((element) => {
+    quantity += element.quantity;
+    summa += element.priceAll;
+  });
+  const handelClick = () => {
+    dispatch(compositionOfProducts());
+  };
   return (
     <div>
-      <div>
-        {/* <img src={basketLogo} alt="" style={{ width: "50px" }} /> */}
+      <div style={{ display: "flex", padding: "20px" }}>
+        <img style={{ width: "70px" }} src={basketLogo} />
         <h1>---Basket---</h1>
       </div>
       <div>
@@ -20,71 +35,97 @@ const Basket = () => {
             (el) => el.id === element.id
           );
           return (
-            <div className="basket bsk-pizza">
-              <div
+            <div
+              className="basket bsk-pizza"
+              onClick={() => dispatch(compositionOfProducts(index))}>
+              <Link
+                // onClick={() => dispatch(compositionOfProducts(index))}
+                // onClick={() => dispatch(compositionOfProducts(index))}
+                // onClick={() => console.log("link : ", index)}
+                to="composition"
                 style={{
-                  width: "150px",
-                  height: "100%",
-                  gridColumn: "2",
+                  textDecoration: "none",
+                  color: "black",
+                  gridColumnStart: "2",
+                  gridColumnEnd: "5",
                 }}>
-                <img
+                <div
                   style={{
-                    width: "100px",
-                    height: "100px",
-                  }}
-                  src={stateAll.arrayDataPizza[indexCP].imgSrc}
-                  alt="..."
-                />
-              </div>
+                    display: "flex",
+                  }}>
+                  <div
+                    style={{
+                      width: "150px",
+                      height: "100%",
+                      // gridColumn: "2",
+                    }}>
+                    <img
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100px",
+                        height: "100px",
+                      }}
+                      src={stateAll.arrayDataPizza[indexCP].imgSrc}
+                      alt="..."
+                    />
+                  </div>
 
-              <div
-                style={{
-                  height: "100%",
-                  width: "200px",
-                  gridColumn: "3",
-                }}>
-                <div style={{ margin: "0 100% 0  0" }}>
-                  <h1>{stateAll.arrayDataPizza[indexCP].name}</h1>
-                </div>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "200px",
+                      // gridColumn: "3",
+                    }}>
+                    <div
+                      style={{
+                        margin: "0 100% 0  0",
+                      }}>
+                      <h1>{stateAll.arrayDataPizza[indexCP].name}</h1>
+                    </div>
 
-                <div style={{ display: "flex" }}>
-                  <p style={{ marginRight: "30px" }}>{element.width}</p>
-                  {element.size === "small" ? (
-                    <p>25 sm</p>
-                  ) : element.size === "madium" ? (
-                    <p>30 sm</p>
-                  ) : (
-                    <p>40 sm</p>
-                  )}
+                    <div style={{ display: "flex" }}>
+                      <p style={{ marginRight: "30px" }}>{element.width}</p>
+                      {element.size === "small" ? (
+                        <p>25 sm</p>
+                      ) : element.size === "madium" ? (
+                        <p>30 sm</p>
+                      ) : (
+                        <p>40 sm</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </Link>
+
+              {/*  */}
               <div
                 style={{
                   display: "flex",
                   gridColumnStart: "6",
+                  alignItems: "center",
                 }}>
                 <button
+                  className={` basket btn-plus-minus   ${
+                    element.quantity !== 1 ? "" : "activeOrange"
+                  }`}
                   value={index}
-                  className="basket btn-plus-minus"
+                  // className="basket btn-plus-minus "
                   onClick={(e) => dispatch(minusQuantity(e))}>
                   -
                 </button>
                 <h2 style={{ margin: "0 30px 0 30px" }}> {element.quantity}</h2>
                 <button
-                  // value={[
-                  //   element.id,
-                  //   element.quantity,
-                  //   element.priceNew,
-                  //   element.priceAll,
-                  // ]}
                   value={index}
-                  className="basket btn-plus-minus"
+                  className="basket btn-plus-minus "
                   onClick={(e) => dispatch(plusQuantity(e))}>
                   +
                 </button>
               </div>
               <div
                 style={{
+                  display: "flex",
+                  alignItems: "center",
                   width: "150px",
                   gridColumn: "10",
                 }}>
@@ -92,6 +133,8 @@ const Basket = () => {
               </div>
               <div
                 style={{
+                  display: "flex",
+                  alignItems: "center",
                   gridColumn: "12",
                 }}>
                 <button
@@ -106,6 +149,32 @@ const Basket = () => {
             </div>
           );
         })}
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            margin: "0 50px 0 50px",
+            alignItems: "center",
+          }}>
+          <h3>Всего пицци : </h3>
+          <h1 style={{ fontWeight: "700", marginLeft: "10px" }}>
+            {quantity} шт
+          </h1>
+        </div>
+        {/* s */}
+        <div
+          style={{
+            display: "flex",
+            margin: "0 50px 0 50px",
+            alignItems: "center",
+          }}>
+          <h3> Сумма заказа : </h3>
+          <h1
+            style={{ fontWeight: "700", marginLeft: "10px", color: "orange" }}>
+            {summa} ua
+          </h1>
+        </div>
       </div>
     </div>
   );

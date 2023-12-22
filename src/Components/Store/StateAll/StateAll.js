@@ -7,8 +7,8 @@ import salat from "./ImgCard/salat.webp";
 export const stateAll = {
   arrayDataPizza: [
     {
-      id: "0Fipmenna",
-      name: "Fipmenna",
+      id: "0Signature ",
+      name: "Signature ",
       imgSrc: firmenna,
       price: {
         thin: {
@@ -22,6 +22,16 @@ export const stateAll = {
           big: { priceOld: 1800, priceNew: 1490 },
         },
       },
+      compositionOfProducts: [
+        "Signature ",
+        "Bacon slices",
+        "Grilled chicken",
+        "Spicy Italian pepperoni sausages",
+        "Ham",
+        "Paprika",
+        "Herbs",
+        "Mozzarella",
+      ],
       currentStateWidth: "thin",
       currentStateSize: "small",
       currentPriceOld: 120,
@@ -30,8 +40,8 @@ export const stateAll = {
 
     // { name: "Gribi", imgSrc: gribi, priceOld: "130 ua", priceNew: "109 ua" },
     {
-      id: "1Gribi",
-      name: "Gribi",
+      id: "1With-Mushrooms",
+      name: "With-Mushrooms",
       imgSrc: gribi,
       price: {
         thin: {
@@ -45,6 +55,15 @@ export const stateAll = {
           big: { priceOld: 290, priceNew: 279 },
         },
       },
+      compositionOfProducts: [
+        "With-Mushrooms",
+        "Fresh champignons",
+        "Tomatoes",
+        "cucumbers",
+        " Bell pepper",
+        "Hard cheese",
+        "Olives",
+      ],
       currentStateWidth: "thin",
       currentStateSize: "small",
       currentPriceOld: 220,
@@ -53,8 +72,8 @@ export const stateAll = {
 
     // { name: "Salami", imgSrc: salami, priceOld: "110 ua", priceNew: "99 ua" },
     {
-      id: "2Salami",
-      name: "Salami",
+      id: "2With-Salami",
+      name: "With-Salami",
       imgSrc: salami,
       price: {
         thin: {
@@ -68,6 +87,15 @@ export const stateAll = {
           big: { priceOld: 390, priceNew: 379 },
         },
       },
+      compositionOfProducts: [
+        "With-Salami",
+        "salami sausage",
+        "mozzarella cheese",
+        "hard cheese",
+        "tomatoes in their own juice",
+        "cream",
+        "Dor Blue cheese",
+      ],
       currentStateWidth: "thin",
       currentStateSize: "small",
       currentPriceOld: 320,
@@ -75,8 +103,8 @@ export const stateAll = {
     },
     // { name: "Salat", imgSrc: salat, priceOld: "120 ua", priceNew: "79 ua" },
     {
-      id: "3Salat",
-      name: "Salat",
+      id: "3Four-Cheeses",
+      name: "Four-Cheeses",
       imgSrc: salat,
       price: {
         thin: {
@@ -90,6 +118,13 @@ export const stateAll = {
           big: { priceOld: 180, priceNew: 149 },
         },
       },
+      compositionOfProducts: [
+        "Four-Cheeses",
+        "Mozzarella cheese ",
+        " Ricotta cheese",
+        "parmesan cheese",
+        " Gorgonzola cheese",
+      ],
       currentStateWidth: "thin",
       currentStateSize: "small",
       currentPriceOld: 420,

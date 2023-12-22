@@ -45,3 +45,9 @@
   font-size: 30px;
   font-weight: 500;
 }
+.btn-order {
+  width: 100px;
+}
+.active {
+  background-color: rgb(196, 196, 196);
+}

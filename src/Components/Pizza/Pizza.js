@@ -9,9 +9,15 @@ import { useSelector } from "react-redux";
 import Basket from "../Basket/Basket";
 import basket from "./basket.webp";
 import basketW from "./basketW.png";
+import Composition from "../Composition/Composition";
 // import logo from "./imgPizza/logoPizza.webp";
 
 const Pizza = () => {
+  const stateBasket = useSelector((state) => state.pizzaReducer.stateBasket);
+  let summa = 0;
+  stateBasket.forEach((element) => {
+    summa += element.priceAll;
+  });
   return (
     <div>
       <h1>---Pizza---</h1>
@@ -26,7 +32,7 @@ const Pizza = () => {
             <Link
               style={{ textDecoration: "none", color: "white" }}
               to="basket">
-              100 ua |
+              {summa} ua |
               <img
                 style={{ width: "20px", margin: "4px" }}
                 src={basketW}
@@ -42,6 +48,7 @@ const Pizza = () => {
         <Route path="home" element={<Home />}></Route>
         <Route path="mes" element={<Settings />}></Route>
         <Route path="message" element={<All />}></Route>
+        <Route path="basket/composition" element={<Composition />}></Route>
         <Route path="basket" element={<Basket />}></Route>
       </Routes>
     </div>

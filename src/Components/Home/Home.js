@@ -1,9 +1,4 @@
 import React from "react";
-// import pizza1 from "./img/pizza1.jpg";
-// import pizza2 from "./img/pizza2.jpg";
-// import pizza3 from "./img/pizza3.jpg";
-// import pizza4 from "./img/pizza4.avif";
-// import pizza5 from "./img/pizza5.jpg";
 import { useSelector } from "react-redux";
 
 const Home = () => {

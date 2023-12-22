@@ -6,6 +6,6 @@ export const state = {
   stateHome: stateHome,
   stateAll: stateAll,
   stateBasket: stateBasket,
-  count: 0,
+  compositionOfProducts: [],
   // dataPizzaBeforeClickOrder: [],
 };

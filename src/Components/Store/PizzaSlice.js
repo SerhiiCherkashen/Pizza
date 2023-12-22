@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { state } from "./StatePizza";
+import { determineSize, orderFn } from "./PizzaSliceFunction.js";
 
 const pizzaSlice = createSlice({
   name: "pizzaSite",
@@ -12,78 +13,26 @@ const pizzaSlice = createSlice({
         (el) => el.id === id
       );
       const objectCard = state.stateAll.arrayDataPizza[index]; //  {}
-
-      if (width === "thin") {
-        if (objectCard.currentStateSize === "small") {
-          objectCard.currentPriceOld = objectCard.price.thin.small.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thin.small.priceNew;
-        } else if (objectCard.currentStateSize === "medium") {
-          objectCard.currentPriceOld = objectCard.price.thin.medium.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thin.medium.priceNew;
-        } else {
-          objectCard.currentPriceOld = objectCard.price.thin.big.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thin.big.priceNew;
-        }
-      } else {
-        console.log("if");
-        if (objectCard.currentStateSize === "small") {
-          objectCard.currentPriceOld = objectCard.price.thick.small.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thick.small.priceNew;
-        } else if (objectCard.currentStateSize === "medium") {
-          objectCard.currentPriceOld = objectCard.price.thick.medium.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thick.medium.priceNew;
-        } else {
-          objectCard.currentPriceOld = objectCard.price.thick.big.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thick.big.priceNew;
-        }
-      }
-
       objectCard.currentStateWidth = width;
+      determineSize(width, objectCard.currentStateSize, objectCard);
     },
     clickSize: (state, action) => {
       const id = action.payload.target.id; //   0Firmennaa
       const size = action.payload.target.value; // small /  medium  / large
-
       const index = state.stateAll.arrayDataPizza.findIndex(
         (el) => el.id === id
       );
       const objectCard = state.stateAll.arrayDataPizza[index]; //  {}
-
-      if (objectCard.currentStateWidth === "thin") {
-        if (size === "small") {
-          objectCard.currentPriceOld = objectCard.price.thin.small.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thin.small.priceNew;
-        } else if (size === "medium") {
-          objectCard.currentPriceOld = objectCard.price.thin.medium.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thin.medium.priceNew;
-        } else {
-          objectCard.currentPriceOld = objectCard.price.thin.big.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thin.big.priceNew;
-        }
-      } else {
-        if (size === "small") {
-          objectCard.currentPriceOld = objectCard.price.thick.small.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thick.small.priceNew;
-        } else if (size === "medium") {
-          objectCard.currentPriceOld = objectCard.price.thick.medium.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thick.medium.priceNew;
-        } else {
-          objectCard.currentPriceOld = objectCard.price.thick.big.priceOld;
-          objectCard.currentPriceNew = objectCard.price.thick.big.priceNew;
-        }
-      }
       objectCard.currentStateSize = size;
+
+      determineSize(objectCard.currentStateWidth, size, objectCard);
     },
-
     clickOrder: (state, action) => {
-      console.log("ID ? : ", String(+new Date())); // ID 492750203459
       const id = action.payload.target.id; //  0Firmenna
-
       const index = state.stateAll.arrayDataPizza.findIndex(
         (el) => el.id === id
       ); // 0 / 1 in [stateAll]
       const objPizza = state.stateAll.arrayDataPizza[index]; // { id : 0Firmenna , --- , currentPriseNew}
-
       const BasketIndex = +state.stateBasket.findIndex(
         (el) =>
           el.id === id &&
@@ -91,6 +40,7 @@ const pizzaSlice = createSlice({
           el.size === objPizza.currentStateSize
       ); // index in [state.Basket]
 
+      // orderFn(BasketIndex, id, objPizza, state);
       if (BasketIndex < 0) {
         state.stateBasket = [
           ...state.stateBasket,
@@ -98,6 +48,7 @@ const pizzaSlice = createSlice({
             id: id,
             imgSrc: objPizza.imgSrc,
             name: objPizza.name,
+            compositionOfProducts: objPizza.compositionOfProducts,
             width: objPizza.currentStateWidth,
             size: objPizza.currentStateSize,
             quantity: 1,
@@ -111,25 +62,38 @@ const pizzaSlice = createSlice({
         state.stateBasket[BasketIndex].priceAll += +objPizza.currentPriceNew;
       }
     },
-
     minusQuantity: (state, action) => {
       const index = action.payload.target.value;
       if (state.stateBasket[index].quantity >= 2) {
         state.stateBasket[index].quantity -= 1;
         state.stateBasket[index].priceAll -= state.stateBasket[index].priceNew;
-      } else {
-        state.stateBasket.splice(index, 1);
       }
+      // else {
+      //   state.stateBasket.splice(index, 1);
+      // }
     },
     plusQuantity: (state, action) => {
       const index = action.payload.target.value;
-
       state.stateBasket[index].quantity += 1;
       state.stateBasket[index].priceAll += state.stateBasket[index].priceNew;
     },
     delPizza: (state, action) => {
-      const index = action.payload.target.value;
+      console.log("length 1: ", state.stateBasket.length);
+      const index = +action.payload.target.value;
+      console.log("index del: ", index);
       state.stateBasket.splice(index, 1);
+      console.log("length 2: ", state.stateBasket.length);
+    },
+    compositionOfProducts: (state, action) => {
+      const index = action.payload;
+      if (state.stateBasket.length > 0) {
+        // console.log("index ??? : ", index);
+        // console.log(" state.keys: ", Object.keys(state));
+        // //
+        // console.log(" stateBasket.keys: ", Object.keys(state.stateBasket[index]));
+        state.compositionOfProducts =
+          state.stateBasket[index].compositionOfProducts;
+      }
     },
   },
 });
@@ -141,6 +105,7 @@ export const {
   plusQuantity,
   minusQuantity,
   delPizza,
+  compositionOfProducts,
 } = pizzaSlice.actions;
 export default pizzaSlice.reducer;
 // //
@@ -237,3 +202,78 @@ export default pizzaSlice.reducer;
 //
 //
 //
+//
+//
+// if (BasketIndex < 0) {
+//   state.stateBasket = [
+//     ...state.stateBasket,
+//     {
+//       id: id,
+//       imgSrc: objPizza.imgSrc,
+//       name: objPizza.name,
+//       width: objPizza.currentStateWidth,
+//       size: objPizza.currentStateSize,
+//       quantity: 1,
+//       priceOld: +objPizza.currentPriceOld,
+//       priceNew: +objPizza.currentPriceNew,
+//       priceAll: +objPizza.currentPriceNew,
+//     },
+//   ];
+// } else {
+//   state.stateBasket[BasketIndex].quantity += 1;
+//   state.stateBasket[BasketIndex].priceAll += +objPizza.currentPriceNew;
+// }
+//
+//
+//
+// if (width === "thin") {
+//   if (objectCard.currentStateSize === "small") {
+//     objectCard.currentPriceOld = objectCard.price.thin.small.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thin.small.priceNew;
+//   } else if (objectCard.currentStateSize === "medium") {
+//     objectCard.currentPriceOld = objectCard.price.thin.medium.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thin.medium.priceNew;
+//   } else {
+//     objectCard.currentPriceOld = objectCard.price.thin.big.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thin.big.priceNew;
+//   }
+// } else {
+//   console.log("if");
+//   if (objectCard.currentStateSize === "small") {
+//     objectCard.currentPriceOld = objectCard.price.thick.small.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thick.small.priceNew;
+//   } else if (objectCard.currentStateSize === "medium") {
+//     objectCard.currentPriceOld = objectCard.price.thick.medium.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thick.medium.priceNew;
+//   } else {
+//     objectCard.currentPriceOld = objectCard.price.thick.big.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thick.big.priceNew;
+//   }
+// }
+//
+//
+//
+
+// if (objectCard.currentStateWidth === "thin") {
+//   if (size === "small") {
+//     objectCard.currentPriceOld = objectCard.price.thin.small.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thin.small.priceNew;
+//   } else if (size === "medium") {
+//     objectCard.currentPriceOld = objectCard.price.thin.medium.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thin.medium.priceNew;
+//   } else {
+//     objectCard.currentPriceOld = objectCard.price.thin.big.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thin.big.priceNew;
+//   }
+// } else {
+//   if (size === "small") {
+//     objectCard.currentPriceOld = objectCard.price.thick.small.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thick.small.priceNew;
+//   } else if (size === "medium") {
+//     objectCard.currentPriceOld = objectCard.price.thick.medium.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thick.medium.priceNew;
+//   } else {
+//     objectCard.currentPriceOld = objectCard.price.thick.big.priceOld;
+//     objectCard.currentPriceNew = objectCard.price.thick.big.priceNew;
+//   }
+// }

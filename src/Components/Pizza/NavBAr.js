@@ -22,6 +22,7 @@ export const NavBar = () => {
             <Link className="link-route" to="mes">
               Гриль
             </Link>
+
             <form class="d-flex ms-auto mb-2 mb-lg-0" role="search">
               <input
                 class="form-control me-2"
