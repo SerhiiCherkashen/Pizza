@@ -86,14 +86,16 @@ const pizzaSlice = createSlice({
     },
     compositionOfProducts: (state, action) => {
       const index = action.payload;
-      if (state.stateBasket.length > 0) {
-        // console.log("index ??? : ", index);
-        // console.log(" state.keys: ", Object.keys(state));
-        // //
-        // console.log(" stateBasket.keys: ", Object.keys(state.stateBasket[index]));
-        state.compositionOfProducts =
-          state.stateBasket[index].compositionOfProducts;
-      }
+      // if (state.stateBasket.length > 0) {
+      // console.log("index ??? : ", index);
+      // console.log(" state.keys: ", Object.keys(state));
+      // //
+      // console.log(" stateBasket.keys: ", Object.keys(state.stateBasket[index]));
+      state.compositionOfProducts.name = state.stateBasket[index].name;
+      state.compositionOfProducts.imgSrc = state.stateBasket[index].imgSrc;
+      state.compositionOfProducts.array =
+        state.stateBasket[index].compositionOfProducts;
+      // }
     },
   },
 });

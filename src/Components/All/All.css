@@ -1,18 +1,32 @@
-.hyi {
-  /* background-color: burlywood; */
+.grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 30px;
+  padding: 20px;
 }
-.bnt-wrapper {
-  background-color: rgb(244, 252, 249);
+.wrap-card {
+  /* background-color: rgb(233, 177, 177); */
+}
+
+.card .wrap-img {
+  height: 200px;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+}
+.card img {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  height: 90%;
+  margin: auto;
+}
+.card .card-body {
+  /* background-color: rgb(111, 241, 165); */
 }
 .bnt-wrapper button {
   border: none;
   margin: 1px;
   font-weight: 700;
-}
-.bnt-wrapper button :hover {
-  background-color: red;
+  /* background-color: rgb(255, 255, 149); */
 }
 .btn-top {
   display: grid;
@@ -27,12 +41,13 @@
   align-items: end;
 }
 .price-wrapper {
+  margin-top: 20px;
   display: grid;
-  grid-template-columns: 4fr 1fr;
-  /* white-space: nowrap; */
+  grid-template-columns: 3fr 100px;
 }
-.price-div-wr {
-  display: flex;
+.price-old-new-wr {
+  /* background-color: aqua; */
+  /* display: flex; */
 }
 .price-old {
   font-size: 20px;
@@ -45,9 +60,46 @@
   font-size: 30px;
   font-weight: 500;
 }
-.btn-order {
-  width: 100px;
+.price-order-btn-wr {
+  /* background-color: coral; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.price-order-btn-wr button {
+  color: white;
+  background-color: rgb(71, 58, 241);
+  width: 90%;
+  height: 60px;
 }
 .active {
   background-color: rgb(196, 196, 196);
+}
+
+@media (max-width: 1660px) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (max-width: 1450px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 680px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 20px 80px 20px 80px;
+    /* gap: 60px; */
+  }
 }

@@ -1,0 +1,24 @@
+.composition,
+.wrap {
+  display: grid;
+  grid-template-columns: repeat(12 1fr);
+}
+.composition.wrap-text {
+  grid-column: 2/5;
+}
+.composition.wrap-img {
+  grid-column: 5;
+}
+.composition.wrap-text h2 {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 900;
+  margin: 0 0 30px 30px;
+}
+.composition.wrap-text h3 {
+  display: flex;
+  justify-content: flex-start;
+}
+.composition img {
+  width: 300px;
+}

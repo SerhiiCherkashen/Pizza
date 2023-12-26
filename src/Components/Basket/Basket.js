@@ -25,8 +25,8 @@ const Basket = () => {
   };
   return (
     <div>
-      <div style={{ display: "flex", padding: "20px" }}>
-        <img style={{ width: "70px" }} src={basketLogo} />
+      <div className="basket wrap-bsk-logo">
+        <img className="basket bsk-logo" src={basketLogo} />
         <h1>---Basket---</h1>
       </div>
       <div>
@@ -35,57 +35,26 @@ const Basket = () => {
             (el) => el.id === element.id
           );
           return (
-            <div
-              className="basket bsk-pizza"
-              onClick={() => dispatch(compositionOfProducts(index))}>
+            <div className="basket bsk-pizza">
               <Link
-                // onClick={() => dispatch(compositionOfProducts(index))}
-                // onClick={() => dispatch(compositionOfProducts(index))}
-                // onClick={() => console.log("link : ", index)}
-                to="composition"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  gridColumnStart: "2",
-                  gridColumnEnd: "5",
-                }}>
-                <div
-                  style={{
-                    display: "flex",
-                  }}>
-                  <div
-                    style={{
-                      width: "150px",
-                      height: "100%",
-                      // gridColumn: "2",
-                    }}>
-                    <img
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "100px",
-                        height: "100px",
-                      }}
-                      src={stateAll.arrayDataPizza[indexCP].imgSrc}
-                      alt="..."
-                    />
-                  </div>
+                onClick={() => dispatch(compositionOfProducts(index))}
+                className="basket bsk-link"
+                to="composition">
+                <div className="basket bsk-link-context">
+                  {/* <div> */}
+                  <img
+                    src={stateAll.arrayDataPizza[indexCP].imgSrc}
+                    alt="..."
+                  />
+                  {/* </div> */}
 
-                  <div
-                    style={{
-                      height: "100%",
-                      width: "200px",
-                      // gridColumn: "3",
-                    }}>
-                    <div
-                      style={{
-                        margin: "0 100% 0  0",
-                      }}>
+                  <div className="basket bsk-div-text-content">
+                    <div className="basket bsk-link-context name">
                       <h1>{stateAll.arrayDataPizza[indexCP].name}</h1>
                     </div>
 
-                    <div style={{ display: "flex" }}>
-                      <p style={{ marginRight: "30px" }}>{element.width}</p>
+                    <div className="basket bsk-link-context size-width">
+                      <p>{element.width}</p>
                       {element.size === "small" ? (
                         <p>25 sm</p>
                       ) : element.size === "madium" ? (
@@ -99,44 +68,29 @@ const Basket = () => {
               </Link>
 
               {/*  */}
-              <div
-                style={{
-                  display: "flex",
-                  gridColumnStart: "6",
-                  alignItems: "center",
-                }}>
+              {/*  */}
+              {/*  */}
+              <div className="basket bsk-wrap-plus-minus">
                 <button
                   className={` basket btn-plus-minus   ${
                     element.quantity !== 1 ? "" : "activeOrange"
                   }`}
                   value={index}
-                  // className="basket btn-plus-minus "
                   onClick={(e) => dispatch(minusQuantity(e))}>
                   -
                 </button>
-                <h2 style={{ margin: "0 30px 0 30px" }}> {element.quantity}</h2>
+                <h2> {element.quantity}</h2>
                 <button
-                  value={index}
                   className="basket btn-plus-minus "
-                  onClick={(e) => dispatch(plusQuantity(e))}>
+                  onClick={(e) => dispatch(plusQuantity(e))}
+                  value={index}>
                   +
                 </button>
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "150px",
-                  gridColumn: "10",
-                }}>
+              <div className="basket bsk-wrap-price">
                 <h2>{element.priceAll} ua</h2>
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gridColumn: "12",
-                }}>
+              <div className="basket bsk-del">
                 <button
                   value={index}
                   onClick={(e) => {
@@ -150,30 +104,18 @@ const Basket = () => {
           );
         })}
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div
-          style={{
-            display: "flex",
-            margin: "0 50px 0 50px",
-            alignItems: "center",
-          }}>
+      {/*  */}
+      {/*  */}
+      {/*  */}
+      <div className="basket bsk-wrap-footer">
+        <div className="basket bsk-footer-allPizzas">
           <h3>Всего пицци : </h3>
-          <h1 style={{ fontWeight: "700", marginLeft: "10px" }}>
-            {quantity} шт
-          </h1>
+          <h1>{quantity} шт</h1>
         </div>
         {/* s */}
-        <div
-          style={{
-            display: "flex",
-            margin: "0 50px 0 50px",
-            alignItems: "center",
-          }}>
+        <div className="basket bsk-summa">
           <h3> Сумма заказа : </h3>
-          <h1
-            style={{ fontWeight: "700", marginLeft: "10px", color: "orange" }}>
-            {summa} ua
-          </h1>
+          <h1>{summa} ua</h1>
         </div>
       </div>
     </div>

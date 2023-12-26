@@ -2,7 +2,17 @@
 import firmenna from "./ImgCard/firmenna.webp";
 import gribi from "./ImgCard/gribi.png";
 import salami from "./ImgCard/salami.webp";
+import salami2 from "./ImgCard/salami2.png";
 import salat from "./ImgCard/salat.webp";
+
+import sirnaa from "./ImgCard/sirnaa.png";
+import kalbasa from "./ImgCard/kalbasa.png";
+import ovocheva from "./ImgCard/ovocheva.webp";
+import ovoshhnaya222 from "./ImgCard/ovoshhnaya222.png";
+import peperoni from "./ImgCard/peperoni.webp";
+import peperoni2 from "./ImgCard/peperoni2.png";
+import poDomashnemy from "./ImgCard/poDomashnemy.png";
+import english from "./ImgCard/english.png";
 
 export const stateAll = {
   arrayDataPizza: [
@@ -10,6 +20,7 @@ export const stateAll = {
       id: "0Signature ",
       name: "Signature ",
       imgSrc: firmenna,
+      type: "vegetarian",
       price: {
         thin: {
           small: { priceOld: 120, priceNew: 100 },
@@ -23,7 +34,6 @@ export const stateAll = {
         },
       },
       compositionOfProducts: [
-        "Signature ",
         "Bacon slices",
         "Grilled chicken",
         "Spicy Italian pepperoni sausages",
@@ -38,11 +48,11 @@ export const stateAll = {
       currentPriceNew: 100,
     },
 
-    // { name: "Gribi", imgSrc: gribi, priceOld: "130 ua", priceNew: "109 ua" },
     {
       id: "1With-Mushrooms",
       name: "With-Mushrooms",
       imgSrc: gribi,
+      type: "vegetarian",
       price: {
         thin: {
           small: { priceOld: 220, priceNew: 199 },
@@ -56,7 +66,6 @@ export const stateAll = {
         },
       },
       compositionOfProducts: [
-        "With-Mushrooms",
         "Fresh champignons",
         "Tomatoes",
         "cucumbers",
@@ -70,11 +79,11 @@ export const stateAll = {
       currentPriceNew: 199,
     },
 
-    // { name: "Salami", imgSrc: salami, priceOld: "110 ua", priceNew: "99 ua" },
     {
       id: "2With-Salami",
       name: "With-Salami",
-      imgSrc: salami,
+      imgSrc: salami2,
+      type: "acute",
       price: {
         thin: {
           small: { priceOld: 320, priceNew: 299 },
@@ -88,7 +97,6 @@ export const stateAll = {
         },
       },
       compositionOfProducts: [
-        "With-Salami",
         "salami sausage",
         "mozzarella cheese",
         "hard cheese",
@@ -101,11 +109,12 @@ export const stateAll = {
       currentPriceOld: 320,
       currentPriceNew: 299,
     },
-    // { name: "Salat", imgSrc: salat, priceOld: "120 ua", priceNew: "79 ua" },
+    // asd
     {
-      id: "3Four-Cheeses",
-      name: "Four-Cheeses",
-      imgSrc: salat,
+      id: "4Sirnaa",
+      name: "Sirnaa",
+      imgSrc: sirnaa,
+      type: "vegetarian",
       price: {
         thin: {
           small: { priceOld: 420, priceNew: 399 },
@@ -119,7 +128,147 @@ export const stateAll = {
         },
       },
       compositionOfProducts: [
-        "Four-Cheeses",
+        "Mozzarella cheese ",
+        " Ricotta cheese",
+        "parmesan cheese",
+        " Gorgonzola cheese",
+      ],
+      currentStateWidth: "thin",
+      currentStateSize: "small",
+      currentPriceOld: 420,
+      currentPriceNew: 399,
+    },
+    {
+      id: "5Kalbasa",
+      name: "Kalbasa",
+      imgSrc: kalbasa,
+      type: "acute",
+      price: {
+        thin: {
+          small: { priceOld: 420, priceNew: 399 },
+          medium: { priceOld: 440, priceNew: 419 },
+          big: { priceOld: 480, priceNew: 449 },
+        },
+        thick: {
+          small: { priceOld: 140, priceNew: 109 },
+          medium: { priceOld: 140, priceNew: 119 },
+          big: { priceOld: 180, priceNew: 149 },
+        },
+      },
+      compositionOfProducts: [
+        "Mozzarella cheese ",
+        " Ricotta cheese",
+        "parmesan cheese",
+        " Gorgonzola cheese",
+      ],
+      currentStateWidth: "thin",
+      currentStateSize: "small",
+      currentPriceOld: 420,
+      currentPriceNew: 399,
+    },
+    {
+      id: "6Ovocheva",
+      name: "Ovocheva",
+      imgSrc: ovoshhnaya222,
+      type: "vegetarian",
+      price: {
+        thin: {
+          small: { priceOld: 420, priceNew: 399 },
+          medium: { priceOld: 440, priceNew: 419 },
+          big: { priceOld: 480, priceNew: 449 },
+        },
+        thick: {
+          small: { priceOld: 140, priceNew: 109 },
+          medium: { priceOld: 140, priceNew: 119 },
+          big: { priceOld: 180, priceNew: 149 },
+        },
+      },
+      compositionOfProducts: [
+        "Mozzarella cheese ",
+        " Ricotta cheese",
+        "parmesan cheese",
+        " Gorgonzola cheese",
+      ],
+      currentStateWidth: "thin",
+      currentStateSize: "small",
+      currentPriceOld: 420,
+      currentPriceNew: 399,
+    },
+    //
+    {
+      id: "7Peperoni",
+      name: "Peperoni",
+      imgSrc: peperoni2,
+      type: "vegetarian",
+      price: {
+        thin: {
+          small: { priceOld: 420, priceNew: 399 },
+          medium: { priceOld: 440, priceNew: 419 },
+          big: { priceOld: 480, priceNew: 449 },
+        },
+        thick: {
+          small: { priceOld: 140, priceNew: 109 },
+          medium: { priceOld: 140, priceNew: 119 },
+          big: { priceOld: 180, priceNew: 149 },
+        },
+      },
+      compositionOfProducts: [
+        "Mozzarella cheese ",
+        " Ricotta cheese",
+        "parmesan cheese",
+        " Gorgonzola cheese",
+      ],
+      currentStateWidth: "thin",
+      currentStateSize: "small",
+      currentPriceOld: 420,
+      currentPriceNew: 399,
+    },
+    {
+      id: "8PoDomashnemy",
+      name: "PoDomashnemy",
+      imgSrc: poDomashnemy,
+      type: "vegetarian",
+      price: {
+        thin: {
+          small: { priceOld: 420, priceNew: 399 },
+          medium: { priceOld: 440, priceNew: 419 },
+          big: { priceOld: 480, priceNew: 449 },
+        },
+        thick: {
+          small: { priceOld: 140, priceNew: 109 },
+          medium: { priceOld: 140, priceNew: 119 },
+          big: { priceOld: 180, priceNew: 149 },
+        },
+      },
+      compositionOfProducts: [
+        "Mozzarella cheese ",
+        " Ricotta cheese",
+        "parmesan cheese",
+        " Gorgonzola cheese",
+      ],
+      currentStateWidth: "thin",
+      currentStateSize: "small",
+      currentPriceOld: 420,
+      currentPriceNew: 399,
+    },
+    {
+      id: "3English",
+      name: "English",
+      imgSrc: english,
+      type: "vegetarian",
+      price: {
+        thin: {
+          small: { priceOld: 420, priceNew: 399 },
+          medium: { priceOld: 440, priceNew: 419 },
+          big: { priceOld: 480, priceNew: 449 },
+        },
+        thick: {
+          small: { priceOld: 140, priceNew: 109 },
+          medium: { priceOld: 140, priceNew: 119 },
+          big: { priceOld: 180, priceNew: 149 },
+        },
+      },
+      compositionOfProducts: [
         "Mozzarella cheese ",
         " Ricotta cheese",
         "parmesan cheese",

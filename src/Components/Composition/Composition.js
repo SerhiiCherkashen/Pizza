@@ -1,32 +1,23 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import "./Composition.css";
 
 const Composition = () => {
   const state = useSelector((state) => state.pizzaReducer);
   return (
     <div>
       <h1>---Composition---</h1>
-
-      {state.compositionOfProducts.map((el, index) => {
-        if (index === 0) {
-          return (
-            <h2
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                fontWeight: "900",
-                margin: "0 0 30px 30px",
-              }}>
-              {el}
-            </h2>
-          );
-        }
-        return (
-          <h3 style={{ display: "flex", justifyContent: "flex-start" }}>
-            - {el}{" "}
-          </h3>
-        );
-      })}
+      <div className="composition wrap ">
+        <div className="composition wrap-text">
+          <h2>{state.compositionOfProducts.name}</h2>
+          {state.compositionOfProducts.array.map((el, index) => {
+            return <h3>- {el}</h3>;
+          })}
+        </div>
+        <div className="composition wrap-img">
+          <img src={state.compositionOfProducts.imgSrc} alt="..." />
+        </div>
+      </div>
     </div>
   );
 };

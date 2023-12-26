@@ -4,12 +4,14 @@ import { Routes, Route, Link } from "react-router-dom";
 import { NavBar } from "./NavBAr";
 import All from "../All/All";
 import Home from "../Home/Home";
-import Settings from "../Settings/Settings";
+// import Settings from "../Vegetarian/Vegetarian";
 import { useSelector } from "react-redux";
 import Basket from "../Basket/Basket";
 import basket from "./basket.webp";
 import basketW from "./basketW.png";
 import Composition from "../Composition/Composition";
+import Vegetarian from "../Vegetarian/Vegetarian";
+import Acute from "../Acute/Acute";
 // import logo from "./imgPizza/logoPizza.webp";
 
 const Pizza = () => {
@@ -20,7 +22,7 @@ const Pizza = () => {
   });
   return (
     <div>
-      <h1>---Pizza---</h1>
+      {/* <h1>---Pizza---</h1> */}
       <div className="header-logo">
         <div>
           <span style={{ fontWeight: "700", fontSize: "30px" }}>
@@ -45,9 +47,10 @@ const Pizza = () => {
 
       <NavBar />
       <Routes>
-        <Route path="home" element={<Home />}></Route>
-        <Route path="mes" element={<Settings />}></Route>
-        <Route path="message" element={<All />}></Route>
+        <Route path="" element={<Home />}></Route>
+        <Route path="all" element={<All />}></Route>
+        <Route path="vegetarian" element={<Vegetarian />}></Route>
+        <Route path="acute" element={<Acute />}></Route>
         <Route path="basket/composition" element={<Composition />}></Route>
         <Route path="basket" element={<Basket />}></Route>
       </Routes>
