@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./All.css";
-import { clickOrder, clickSize, clickWidth } from "../Store/PizzaSlice";
+import {
+  addPagination,
+  clickOrder,
+  clickSize,
+  clickWidth,
+} from "../Store/PizzaSlice";
 import { numberOfPizzasOrdered } from "./AllFunction.js";
 import { renderCard } from "../RenderCard/renderCard";
+import Paginationn from "../Pagination/Pagination";
 
 const All = () => {
   const dispatch = useDispatch();
   const stateAll = useSelector((state) => state.pizzaReducer.stateAll);
   const stateBasket = useSelector((state) => state.pizzaReducer.stateBasket);
+  const statePagination = useSelector(
+    (state) => state.pizzaReducer.statePagination
+  );
+
+  useEffect(() => {
+    const pageWidth = document.documentElement.scrollWidth;
+    dispatch(addPagination(pageWidth));
+  });
+
+  let sizePage = statePagination.sizePage;
+  let active = statePagination.active;
+  // let sizePage = statePagination.sizePage
+  let startIndex = sizePage * (active - 1);
+  let finishLength = sizePage * active;
   let quantity = null;
+  let arrP = [];
+  arrP = stateAll.arrayDataPizza.slice(startIndex, finishLength);
 
   return (
     <div>
       {/* <h1>---All---</h1> */}
       <div className="grid">
-        {stateAll.arrayDataPizza.map((element, index) => {
+        {arrP.map((element, index) => {
           quantity = numberOfPizzasOrdered(stateBasket, element);
           return renderCard(
             element,
@@ -30,6 +52,7 @@ const All = () => {
           );
         })}
       </div>
+      <Paginationn />
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const renderCard = (
   trueFalse
 ) => {
   if (element.type === type || trueFalse) {
-    console.log(element.name);
+    // console.log(element.name);
 
     return (
       <div className="card wrap-card " key={index}>

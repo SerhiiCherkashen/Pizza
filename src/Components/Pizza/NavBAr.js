@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addPagination } from "../Store/PizzaSlice";
 
 export const NavBar = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.pizzaReducer.state);
+
+  useEffect(() => {
+    const pageWidth = document.documentElement.scrollWidth;
+    dispatch(addPagination(pageWidth));
+
+    console.log("useEffect width screen : ", pageWidth);
+  });
+
   return (
     <div>
       <nav

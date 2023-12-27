@@ -15,6 +15,7 @@ import poDomashnemy from "./ImgCard/poDomashnemy.png";
 import english from "./ImgCard/english.png";
 
 export const stateAll = {
+  nameStore: "Все",
   arrayDataPizza: [
     {
       id: "0Signature ",

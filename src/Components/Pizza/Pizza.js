@@ -12,7 +12,10 @@ import basketW from "./basketW.png";
 import Composition from "../Composition/Composition";
 import Vegetarian from "../Vegetarian/Vegetarian";
 import Acute from "../Acute/Acute";
+import Pagination from "../Pagination/Pagination";
+import Paginationn from "../Pagination/Pagination";
 // import logo from "./imgPizza/logoPizza.webp";
+// import Pagination from "react-bootstrap/Pagination";
 
 const Pizza = () => {
   const stateBasket = useSelector((state) => state.pizzaReducer.stateBasket);
@@ -20,6 +23,17 @@ const Pizza = () => {
   stateBasket.forEach((element) => {
     summa += element.priceAll;
   });
+
+  // let active = 2;
+  // let items = [];
+  // for (let number = 1; number <= 5; number++) {
+  //   items.push(
+  //     <Pagination.Item key={number} active={number === active}>
+  //       {number}
+  //     </Pagination.Item>
+  //   );
+  // }
+
   return (
     <div>
       {/* <h1>---Pizza---</h1> */}
@@ -54,6 +68,8 @@ const Pizza = () => {
         <Route path="basket/composition" element={<Composition />}></Route>
         <Route path="basket" element={<Basket />}></Route>
       </Routes>
+      {/* 
+      //  */}
     </div>
   );
 };

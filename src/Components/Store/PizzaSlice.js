@@ -97,6 +97,61 @@ const pizzaSlice = createSlice({
         state.stateBasket[index].compositionOfProducts;
       // }
     },
+    addPagination: (state, action) => {
+      console.log("addPagination action.payload: ", action.payload);
+      if (action.payload > 1660) {
+        console.log("aaa");
+        state.statePagination.sizePage = 6;
+      } else if (1450 < action.payload && action.payload < 1660) {
+        console.log("bbb");
+        state.statePagination.sizePage = 5;
+      } else if (1200 < action.payload && action.payload < 1450) {
+        console.log("ccc");
+        state.statePagination.sizePage = 4;
+      } else if (900 < action.payload && action.payload < 1200) {
+        console.log("ddd");
+        state.statePagination.sizePage = 3;
+      } else if (680 < action.payload && action.payload < 900) {
+        console.log("eee");
+        state.statePagination.sizePage = 2;
+      } else if (action.payload < 680) {
+        console.log("fff");
+        state.statePagination.sizePage = 1;
+      }
+
+      console.log(
+        "state.statePagination.sizePage : ",
+        state.statePagination.sizePage
+      );
+      // state.statePagination.sizePage = 2;
+      state.statePagination.arrayLength = state.stateAll.arrayDataPizza.length;
+      state.statePagination.countPages = Math.ceil(
+        state.statePagination.arrayLength / state.statePagination.sizePage
+      );
+    },
+    changePaginationPages: (state, action) => {
+      console.log("changePaginationPages : ", action.payload);
+      let pageWidth = action.payload.pageWidth;
+
+      if (pageWidth > 1660) {
+        state.statePagination.sizePage = 6;
+      } else if (pageWidth < 1660) {
+        state.statePagination.sizePage = 5;
+      } else if (pageWidth < 1450) {
+        state.statePagination.sizePage = 4;
+      } else if (pageWidth < 1200) {
+        state.statePagination.sizePage = 3;
+      } else if (pageWidth < 900) {
+        state.statePagination.sizePage = 2;
+      } else if (pageWidth < 680) {
+        state.statePagination.sizePage = 1;
+      }
+      // console.log("active : ", action.payload);
+      state.statePagination.active = action.payload.number;
+      state.statePagination.countPages = Math.ceil(
+        state.statePagination.arrayLength / state.statePagination.sizePage
+      );
+    },
   },
 });
 
@@ -108,6 +163,8 @@ export const {
   minusQuantity,
   delPizza,
   compositionOfProducts,
+  addPagination,
+  changePaginationPages,
 } = pizzaSlice.actions;
 export default pizzaSlice.reducer;
 // //
